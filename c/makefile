@@ -55,12 +55,12 @@ libjpam.x86: Pam.c
 # Linux x86_64
 libjpam.x86_64: Pam.c
 	gcc -fPIC -Wall -g -c -I$(JAVA_HOME)/include -I$(JAVA_HOME)/include/linux Pam.c
-	gcc -g -shared -fPIC -o libjpam.so Pam.o -lpam -lpam_misc -ldl	    
+	gcc -g -shared -fPIC -o libjpam.so Pam.o -lpam -lpam_misc -ldl
 
 # Mac OS X
 libjpam.mac_os_x: Pam.c
-	gcc -fPIC -Wall -g -c -I$(JAVA_HOME)/include Pam.c
-	gcc -g -export-dynamic -dynamiclib -Wl -o libjpam.jnilib Pam.o -lpam -lpam_misc -ldl -framework JavaVM
+	gcc -fPIC -Wall -g -c -I$(JAVA_HOME)/include -I/System/Library/Frameworks/JavaVM.framework/Headers/ Pam.c
+	gcc -g --export-dynamic -dynamiclib -Wl -o libjpam.jnilib Pam.o -lpam -ldl -framework JavaVM
 
 # Solaris
 libjpam.solaris: Pam.c

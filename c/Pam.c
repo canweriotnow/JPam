@@ -80,8 +80,8 @@
 
 //Mac OS X has its PAM libraries in a different place
 #ifdef __APPLE__
-#include <pam/pam_appl.h>
-#include <pam/pam_misc.h>
+#include <security/pam_appl.h>
+//#include <pam/pam_misc.h>
 #else
 #include <security/pam_appl.h>
 //#include <security/pam_misc.h>
@@ -182,7 +182,7 @@ JNIEXPORT void JNICALL Java_net_sf_jpam_Pam_nativeMethod(JNIEnv *env, jobject ob
 }
 
 JNIEXPORT jint JNICALL JNI_OnLoad (JavaVM * vm, void * reserved) {
-  libpam = dlopen("libpam.so", RTLD_GLOBAL | RTLD_LAZY); 
+  libpam = dlopen("libpam.so", RTLD_GLOBAL | RTLD_LAZY);
   libpam_misc = dlopen("libpam_misc.so", RTLD_GLOBAL | RTLD_LAZY);
   return JNI_VERSION_1_4;
 }
